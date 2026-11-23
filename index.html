@@ -119,7 +119,8 @@ var TIERS=[null,"Krua Bangna","a Japanese dinner","Omakase"];
 var ticks=[], loaded=false, failed=false, busy=false, me=null, view="home";
 try{var s=localStorage.getItem("sot:me"); if(s==="jon"||s==="ming") me=s;}catch(e){}
 
-function today(){return Math.floor((Date.now()+TZ-START)/86400000)+1;}
+/* 21 Nov 2026 (internet outage) is skipped: 22 Nov is Day 7, so Day 14 is 29 Nov. */
+function today(){var raw=Math.floor((Date.now()+TZ-START)/86400000)+1;return raw>=8?raw-1:raw;}
 function has(p,d){return ticks.some(function(t){return t.person===p&&t.day===d;});}
 function tickOf(p,d){return ticks.filter(function(t){return t.person===p&&t.day===d;})[0];}
 function doneCount(p){return ticks.filter(function(t){return t.person===p;}).length;}
